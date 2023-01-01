@@ -6,7 +6,7 @@
 /*   By: mamounib <mamounib@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 21:44:36 by mamounib          #+#    #+#             */
-/*   Updated: 2023/01/01 03:19:31 by mamounib         ###   ########.fr       */
+/*   Updated: 2023/01/01 06:07:24 by mamounib         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ char *ft_strjoin(char *s1, char *s2)
 	i = 0;
 	while (s2[i] != '\0')
 	{
-		s[j++] = s2[i++];
+		s[j++] = s2[i++];                                         
 	}
 	s[j] = '\0';
 	return (s);
@@ -112,8 +112,10 @@ char *ft_get_line(char *s)
 	int i;
 	char *line;
 
+	if(!s || s[0] == '\0')
+	    return (NULL);
 	i = ft_strlen(s, '\n');
-	line = (char *)malloc(i);
+	line = (char *)malloc(i+1);
 	if (!line)
 		return (NULL);
 	line[i] = '\0';
@@ -129,7 +131,8 @@ char *ft_get_rest(char *s)
 	int index;
 	int i;
 	char *line;
-
+	if (!s || s[0] == '\0')
+		return (NULL);
 	i = ft_strlen(s, '\n') + 1;
 	index = ft_strlen(s + i, '\0');
 	line = (char *)malloc(index + 1);
@@ -156,14 +159,34 @@ char *get_next_line(int fd)
 
 int main(int argc, char const *argv[])
 {
-    char	*s1 = "123456\n123";
-    char	*s2;
+	char *s1 = "123456\n123";
+	char *s2;
 
 	int fd = open("test", O_RDONLY);
-	puts("......");
+	// puts("......");
+	int i = 0;
 	printf("line :%s", get_next_line(fd));
-	puts("......");
+	printf("line :%s", get_next_line(fd));
+	printf("line :%s", get_next_line(fd));
+	printf("line :%s", get_next_line(fd));
+	printf("line :%s", get_next_line(fd));
+	printf("line :%s", get_next_line(fd));
+	printf("line :%s", get_next_line(fd));
+	printf("line :%s", get_next_line(fd));
+	printf("line :%s", get_next_line(fd));
+	printf("line :%s", get_next_line(fd));
+	printf("line :%s", get_next_line(fd));
+	printf("line :%s", get_next_line(fd));
 	printf("line :%s", get_next_line(fd));
 
-	return 0;
+
+	// char *line;
+	// while (1)
+	// {
+	// 	line = get_next_line(fd);
+	// 	printf("line :%s", line);
+	// 	free(line);
+		
+	// }
+	// return (0);
 }
