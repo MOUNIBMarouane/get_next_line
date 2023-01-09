@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mamounib <mamounib@student.42.fr>          +#+  +:+       +#+        */
+/*   By: killwa <killwa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 21:44:36 by mamounib          #+#    #+#             */
-/*   Updated: 2023/01/01 06:07:24 by mamounib         ###   ########.fr       */
+/*   Updated: 2023/01/03 00:52:00 by killwa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,11 @@ int ft_strlen(char *s, char end)
 	if (!s)
 		return (0);
 	while (s[i] != end)
+	{
+		if (!s[i])
+			break;
 		i++;
+	}
 	return (i);
 }
 
@@ -146,6 +150,7 @@ char *ft_get_rest(char *s)
 	}
 	return (line);
 }
+
 char *get_next_line(int fd)
 {
 	static char *stash;
@@ -163,30 +168,16 @@ int main(int argc, char const *argv[])
 	char *s2;
 
 	int fd = open("test", O_RDONLY);
-	// puts("......");
-	int i = 0;
-	printf("line :%s", get_next_line(fd));
-	printf("line :%s", get_next_line(fd));
-	printf("line :%s", get_next_line(fd));
-	printf("line :%s", get_next_line(fd));
-	printf("line :%s", get_next_line(fd));
-	printf("line :%s", get_next_line(fd));
-	printf("line :%s", get_next_line(fd));
-	printf("line :%s", get_next_line(fd));
-	printf("line :%s", get_next_line(fd));
-	printf("line :%s", get_next_line(fd));
-	printf("line :%s", get_next_line(fd));
-	printf("line :%s", get_next_line(fd));
-	printf("line :%s", get_next_line(fd));
-
-
-	// char *line;
-	// while (1)
-	// {
-	// 	line = get_next_line(fd);
-	// 	printf("line :%s", line);
-	// 	free(line);
+	
+	char *line;
+		line = get_next_line(fd);
+	while (line)
+	{
+		free(line);
+		puts("-----------");
+		printf("line :%s", line);
+		line = get_next_line(fd);
 		
-	// }
-	// return (0);
+	}
+	return (0);
 }
